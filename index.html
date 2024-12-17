@@ -3,13 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive Student Report Card</title>
+    <title>Student Result</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @media print {
+        /* Remove unnecessary padding/margins */
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+          font-size: 12px;
+        }
+
+        /* Page size and margin */
+        @page {
+          size: A4 portrait;
+          margin: 1cm;
+        }
+
+        /* Ensure tables fit within the page */
+        /* table {
+          width: 100%;
+          border-collapse: collapse;
+        } */
+
+        /* th,
+        td {
+          border: 1px solid #000;
+          padding: 4px;
+          text-align: center;
+        } */
+
+        /* Hide unnecessary content on print */
+        .no-print {
+          display: none;
+        }
+
+        /* Ensure headers and important text are bold */
+        h1,
+        h2,
+        h3 {
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        .print-title {
+          text-align: center;
+          margin-bottom: 10px;
+        }
+
+        /* Adjust image size for print */
+        img {
+          max-width: 100px;
+          max-height: 100px;
+          object-fit: cover;
+        }
+      }
+    </style>
   </head>
   <body class="p-4 bg-gray-50 text-gray-800">
     <!-- School Header -->
     <header class="text-center">
-      <div class="max-w-[1200px] mx-auto">
+      <div class="pt-[2rem]">
+        <img
+          src="./image/logo.png"
+          alt="Student Photo"
+          class="mx-auto rounded-md w-[100px] h-[100px] object-cover"
+        />
+      </div>
+
+      <div class="w-[210mm] mx-auto">
         <h1 class="text-2xl md:text-3xl font-bold uppercase">
           Rolex Comprehensive College
         </h1>
@@ -30,11 +94,13 @@
     </header>
 
     <!-- Student Details Section -->
-    <section class="grid md:grid-cols-2 gap-4 pb-4 mb-4 max-w-[1200px] mx-auto">
+    <section
+      class="grid grid-cols-2 gap-4 pb-4 mb-4 w-[210mm] mx-auto print:grid print:grid-cols-2 print:gap-4"
+    >
       <!--STUDENT'S PERSONAL DATA  -->
 
       <div
-        class="w-full relative border-collapse border border-gray-400 text-sm md:text-base md:row-span-2"
+        class="w-full relative border-collapse border border-gray-400 text-sm md:text-base md:row-span-2 print:row-span-2"
       >
         <table class="w-full bg-gray-200">
           <tr>
@@ -75,11 +141,11 @@
           </tr>
         </table>
 
-        <div class="absolute top-0 right-0">
+        <div class="absolute bottom-0 right-0">
           <img
-            src="https://via.placeholder.com/100"
+            src="./image/student.jpg"
             alt="Student Photo"
-            class="mx-auto border rounded-md"
+            class="mx-auto border rounded-md w-[100px] h-[100px] object-cover"
           />
         </div>
       </div>
@@ -155,7 +221,7 @@
 
     <!-- Academic Performance -->
     <section>
-      <div class="max-w-[1200px] mx-auto">
+      <div class="w-[210mm] mx-auto">
         <!-- Header -->
         <h1
           class="text-center text-xl font-bold border border-collapse border-gray-400 bg-gray-200"
@@ -266,7 +332,7 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-[1200px] pt-6">
+    <section class="w-[210mm] mx-auto pt-6">
       <div
         class="w-full border-collapse border border-gray-400 text-sm md:text-base"
       >
@@ -297,7 +363,7 @@
     </section>
 
     <section>
-      <div class="mx-auto max-w-[1200px] py-6">
+      <div class="w-[210mm] mx-auto py-6">
         <!-- Table Title -->
         <h1 class="text-center text-xl font-bold mb-4">
           SKILLS DEVELOPMENT AND BEHAVIORAL ATTRIBUTES
@@ -446,7 +512,7 @@
       </div>
     </section>
 
-    <section class="mx-auto max-w-[1200px] py-4">
+    <section class="w-[210mm] mx-auto py-4">
       <div
         class="w-full border-collapse border border-gray-400 text-sm md:text-base"
       >
@@ -482,9 +548,7 @@
     </section>
 
     <section>
-      <div
-        class="max-w-[1200px] mx-auto border border-gray-400 rounded-lg bg-white"
-      >
+      <div class="w-[210mm] mx-auto border border-gray-400 rounded-lg bg-white">
         <!-- Header -->
         <div class="bg-gray-300 text-center font-bold py-2 text-sm uppercase">
           Remarks and Conclusion
@@ -546,5 +610,15 @@
         </div>
       </div>
     </section>
+
+    <!-- Print Button -->
+    <div class="text-center mt-4 no-print">
+      <button
+        onclick="window.print()"
+        class="px-4 py-2 bg-blue-500 text-white rounded"
+      >
+        Print Report Card
+      </button>
+    </div>
   </body>
 </html>
